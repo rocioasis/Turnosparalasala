@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Turnos - Sala Informática</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-microchip"></i>
+                <span>SALA INFORMÁTICA</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#solicitar" class="nav-link">Solicitar Turno</a></li>
+                <li><a href="#disponibles" class="nav-link">Turnos Disponibles</a></li>
+                <li><a href="#normas" class="nav-link">Normas</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Turnos para la<br><span class="hero-title-highlight">Sala de Informática</span></h1>
+            <h2 class="hero-subtitle">EPET N° 1 - Reservas Online</h2>
+            <p class="hero-description">
+                Sistema inteligente de reservas para nuestra sala informática.
+                Accede a equipos de última generación y optimiza tu tiempo de estudio.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">40</div>
+                    <div class="stat-label">Equipos Disponibles</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Acceso Online</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Disponibilidad</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('solicitar')">
+                    <i class="fas fa-calendar-plus"></i>
+                    Reservar Turno
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('disponibles')">
+                    <i class="fas fa-clock"></i>
+                    Ver Horarios
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <div class="floating-element">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-microchip"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Code Section -->
+    <section class="qr-section">
+        <div class="container">
+            <div class="qr-content">
+                <div class="qr-info">
+                    <h3><i class="fas fa-qrcode"></i> Acceso Rápido</h3>
+                    <p>Escanea este código QR para acceder desde tu dispositivo móvil</p>
+                </div>
+                <div class="qr-code" id="qrCode">
+                    <!-- QR Code will be generated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solicitar Turno Section -->
+    <section id="solicitar" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-plus"></i>
+                Solicitar Turno
+            </h2>
+            <div class="form-container">
+                <form id="turnoForm" class="turno-form">
+                    <div class="form-group">
+                        <label for="nombre">
+                            <i class="fas fa-user"></i>
+                            Nombre o Curso
+                        </label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fecha">
+                                <i class="fas fa-calendar"></i>
+                                Fecha
+                            </label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horario">
+                                <i class="fas fa-clock"></i>
+                                Horario
+                            </label>
+                            <select id="horario" name="horario" required>
+                                <option value="">Seleccionar horario</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proposito">
+                            <i class="fas fa-tasks"></i>
+                            Propósito de uso
+                        </label>
+                        <select id="proposito" name="proposito" required>
+                            <option value="">Seleccionar propósito</option>
+                            <option value="clase">Clase programada</option>
+                            <option value="proyecto">Proyecto personal</option>
+                            <option value="estudio">Estudio grupal</option>
+                            <option value="investigacion">Investigación</option>
+                            <option value="examen">Examen o evaluación</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Turnos Disponibles Section -->
+    <section id="disponibles" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-check"></i>
+                Turnos Disponibles
+            </h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="btn-nav" id="prevWeek">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3 id="currentWeek">Semana actual</h3>
+                    <button class="btn-nav" id="nextWeek">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated here -->
+                </div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color disponible"></div>
+                    <span>Disponible</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color ocupado"></div>
+                    <span>Ocupado</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color mantenimiento"></div>
+                    <span>Mantenimiento</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Normas Section -->
+    <section id="normas" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-shield-alt"></i>
+                Normas de Uso
+            </h2>
+            <div class="normas-grid">
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Puntualidad</h3>
+                    <p>Llegar a tiempo es fundamental. Los turnos tienen una tolerancia máxima de 10 minutos.</p>
+                </div>
+
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Identificación</h3>
+                    <p>Presentar documento de identidad o credencial estudiantil al ingresar.</p>
+                </div>
+
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Higiene</h3>
+                    <p>Mantener limpio el área de trabajo. Usar alcohol en gel antes de usar los equipos.</p>
+                </div>
+
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-volume-mute"></i>
+                    </div>
+                    <h3>Silencio</h3>
+                    <p>Mantener un ambiente silencioso para no interrumpir a otros usuarios.</p>
+                </div>
+
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-save"></i>
+                    </div>
+                    <h3>Respaldo</h3>
+                    <p>Guardar tu trabajo en medios propios. Los archivos se eliminan al finalizar la sesión.</p>
+                </div>
+
+                <div class="norma-card">
+                    <div class="norma-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Prohibiciones</h3>
+                    <p>No consumir alimentos, no instalar software no autorizado, no acceder a contenido inapropiado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-headset"></i>
+                Contacto y Soporte
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>+54 3804 456-789</p>
+                    <p>Lun-Vie: 8:00 - 20:00</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>soporte.epetn1@larioja.edu.ar</p>
+                    <p>Respuesta en 24hs</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Ubicación</h3>
+                    <p>EPET N° 1</p>
+                    <p>Av. Perón, 1117, La Rioja, Argentina</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header" id="chatbotHeader">
+            <div class="chatbot-title">
+                <i class="fas fa-robot"></i>
+                <span>Asistente Virtual</span>
+                <div class="status-indicator"></div>
+            </div>
+            <button class="chatbot-toggle" id="chatbotToggle">
+                <i class="fas fa-comment"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?</p>
+                        <div class="quick-actions">
+                            <button class="quick-action" onclick="sendQuickMessage('Quiero reservar un turno')">
+                                Reservar turno
+                            </button>
+                            <button class="quick-action" onclick="sendQuickMessage('Ver horarios disponibles')">
+                                Ver horarios
+                            </button>
+                            <button class="quick-action" onclick="sendQuickMessage('Necesito ayuda')">
+                                Ayuda
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chatbot-input">
+                <div class="input-container">
+                    <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+                    <button class="voice-btn" id="voiceBtn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Operación exitosa</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
